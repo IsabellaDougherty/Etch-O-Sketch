@@ -8,6 +8,13 @@ Option Explicit On
 
 Public Class EtchOSketch
     Dim currentColor As Color = New Color
+    Dim sineWave(776, 362) As Boolean
+    Dim cosWave(776, 362) As Boolean
+    Dim tanWave(776, 362) As Boolean
+    Dim sinePoint As Double
+    Dim cosPoint As Double
+    Dim tanPoint As Double
+    'Dim bitmap As New Bitmap(776, 362)
     Private Sub EtchOSketch_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         currentColor = Color.Black
     End Sub
@@ -19,6 +26,8 @@ Public Class EtchOSketch
                 DrawLineSegment(lastX, lastY, e.X, e.Y)
             Case "Middle"
                 selectColor()
+            Case "Right"
+                PictureBox.Refresh()
         End Select
         Me.Text = $"({e.X},{e.Y}) button: {e.Button.ToString} Color: {Me.currentColor.ToString}"
         lastX = e.X
@@ -62,6 +71,35 @@ Public Class EtchOSketch
     End Sub
 
     Sub waveDraw()
+        Dim x As Double
+        Dim y As Double
+        Dim wavePen As New Pen(Color.Black, 3)
+        Dim g As Graphics = PictureBox.CreateGraphics
+
+        PictureBox.Refresh()
+        For r As Double = 0 To 776
+            wavePen = New Pen(Color.Black, 3)
+            y = Math.Sin(r / 776 * 2 * Math.PI) * 100 + 150
+            x = r
+            g.DrawLine(wavePen, CType(x, Single), CType(y, Single), CType(x, Single) + 1, CType(y, Single))
+
+            wavePen = New Pen(Color.Blue, 3)
+            y = Math.Cos(r / 776 * 2 * Math.PI) * 100 + 150
+            x = r
+            g.DrawLine(wavePen, CType(x, Single), CType(y, Single), CType(x, Single) + 1, CType(y, Single))
+
+            wavePen = New Pen(Color.DarkRed, 3)
+            y = Math.Tan(r / 776 * 2 * Math.PI) * 100 + 150
+            'x = r
+            If y > 362 Then
+            Else
+                x = -r + 776
+                g.DrawLine(wavePen, CType(x, Single), CType(y, Single), CType(x, Single) + 1, CType(y, Single))
+            End If
+
+
+
+        Next
 
     End Sub
 
