@@ -8,13 +8,8 @@ Option Explicit On
 
 Public Class EtchOSketch
     Dim currentColor As Color = New Color
-    Dim sineWave(776, 362) As Boolean
-    Dim cosWave(776, 362) As Boolean
-    Dim tanWave(776, 362) As Boolean
-    Dim sinePoint As Double
-    Dim cosPoint As Double
-    Dim tanPoint As Double
-    'Dim bitmap As New Bitmap(776, 362)
+    Dim shake As New Point(20, 35)
+    Dim unshake As New Point(12, 27)
     Private Sub EtchOSketch_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         currentColor = Color.Black
     End Sub
@@ -27,7 +22,7 @@ Public Class EtchOSketch
             Case "Middle"
                 selectColor()
             Case "Right"
-                PictureBox.Refresh()
+                ClearButton.PerformClick()
         End Select
         Me.Text = $"({e.X},{e.Y}) button: {e.Button.ToString} Color: {Me.currentColor.ToString}"
         lastX = e.X
@@ -44,6 +39,13 @@ Public Class EtchOSketch
 
     Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click
         PictureBox.Refresh()
+        PictureBox.Location = shake
+        System.Threading.Thread.Sleep(500)
+        PictureBox.Location = unshake
+        System.Threading.Thread.Sleep(500)
+        PictureBox.Location = shake
+        System.Threading.Thread.Sleep(500)
+        PictureBox.Location = unshake
     End Sub
 
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
@@ -76,7 +78,7 @@ Public Class EtchOSketch
         Dim wavePen As New Pen(Color.Black, 3)
         Dim g As Graphics = PictureBox.CreateGraphics
 
-        PictureBox.Refresh()
+        ClearButton.PerformClick()
         For r As Double = 0 To 776
             wavePen = New Pen(Color.Black, 3)
             y = Math.Sin(r / 776 * 2 * Math.PI) * 100 + 150
@@ -109,6 +111,6 @@ Public Class EtchOSketch
     End Sub
 
     Private Sub ClearToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem.Click
-        PictureBox.Refresh()
+        ClearButton.PerformClick()
     End Sub
 End Class
