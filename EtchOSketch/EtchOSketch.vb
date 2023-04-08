@@ -84,6 +84,16 @@ Public Class EtchOSketch
         Dim g As Graphics = PictureBox.CreateGraphics
 
         ClearButton.PerformClick()
+
+        'draw a center line in the wave
+        wavePen = New Pen(Color.Black, 1)
+        For r = 1 To 10
+            g.DrawLine(wavePen, CType(77.6 * r, Single), CType(0, Single), CType(77.6 * r, Single), CType(326, Single))
+        Next
+        For r = 1 To 10
+            g.DrawLine(wavePen, CType(0, Single), CType(32.6 * r, Single), CType(776, Single), CType(32.6 * r, Single))
+        Next
+
         For r As Double = 0 To 776
             wavePen = New Pen(Color.Black, 3)
             y = Math.Sin(r / 776 * 2 * Math.PI) * 100 + 150
@@ -104,10 +114,7 @@ Public Class EtchOSketch
                 g.DrawLine(wavePen, CType(x, Single), CType(y, Single), CType(x, Single) + 1, CType(y, Single))
             End If
 
-
-
         Next
-
     End Sub
 
     Sub selectColor()
