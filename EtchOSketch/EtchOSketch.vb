@@ -21,8 +21,6 @@ Public Class EtchOSketch
                 DrawLineSegment(lastX, lastY, e.X, e.Y)
             Case "Middle"
                 selectColor()
-            Case "Right"
-                ClearButton.PerformClick()
         End Select
         Me.Text = $"({e.X},{e.Y}) button: {e.Button.ToString} Color: {Me.currentColor.ToString}"
         lastX = e.X
@@ -40,12 +38,19 @@ Public Class EtchOSketch
     Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click
         PictureBox.Refresh()
         PictureBox.Location = shake
-        System.Threading.Thread.Sleep(500)
+        Try
+            'Replace file path with path from your computer if you would like to add sound to the shaking
+            My.Computer.Audio.Play("C:\Users\bella\Downloads\flax2-104288.wav")
+        Catch ex As Exception
+        End Try
+        System.Threading.Thread.Sleep(250)
         PictureBox.Location = unshake
-        System.Threading.Thread.Sleep(500)
-        PictureBox.Location = shake
-        System.Threading.Thread.Sleep(500)
-        PictureBox.Location = unshake
+        For i = 0 To 7
+            System.Threading.Thread.Sleep(250)
+            PictureBox.Location = shake
+            System.Threading.Thread.Sleep(250)
+            PictureBox.Location = unshake
+        Next
     End Sub
 
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
@@ -112,5 +117,13 @@ Public Class EtchOSketch
 
     Private Sub ClearToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem.Click
         ClearButton.PerformClick()
+    End Sub
+
+    Sub shakeSound()
+        Try
+            My.Computer.Audio.Play("C:\Users\bella\Downloads\chajchas-91758.wav",
+            AudioPlayMode.WaitToComplete)
+        Catch ex As Exception
+        End Try
     End Sub
 End Class
