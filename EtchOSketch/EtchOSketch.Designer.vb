@@ -39,6 +39,7 @@ Partial Class EtchOSketch
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.ColorDialog = New System.Windows.Forms.ColorDialog()
+        Me.SoundCheckBox = New System.Windows.Forms.CheckBox()
         CType(Me.PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -64,9 +65,9 @@ Partial Class EtchOSketch
         Me.SelectColorButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSalmon
         Me.SelectColorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.SelectColorButton.Font = New System.Drawing.Font("Constantia", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.SelectColorButton.Location = New System.Drawing.Point(3, 359)
+        Me.SelectColorButton.Location = New System.Drawing.Point(3, 372)
         Me.SelectColorButton.Name = "SelectColorButton"
-        Me.SelectColorButton.Size = New System.Drawing.Size(194, 79)
+        Me.SelectColorButton.Size = New System.Drawing.Size(194, 46)
         Me.SelectColorButton.TabIndex = 0
         Me.SelectColorButton.Text = "&Select Color"
         Me.SelectColorButton.UseVisualStyleBackColor = False
@@ -79,10 +80,10 @@ Partial Class EtchOSketch
         Me.DrawWaveformsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Peru
         Me.DrawWaveformsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Salmon
         Me.DrawWaveformsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.DrawWaveformsButton.Font = New System.Drawing.Font("Constantia", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.DrawWaveformsButton.Location = New System.Drawing.Point(203, 359)
+        Me.DrawWaveformsButton.Font = New System.Drawing.Font("Constantia", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.DrawWaveformsButton.Location = New System.Drawing.Point(203, 372)
         Me.DrawWaveformsButton.Name = "DrawWaveformsButton"
-        Me.DrawWaveformsButton.Size = New System.Drawing.Size(194, 79)
+        Me.DrawWaveformsButton.Size = New System.Drawing.Size(194, 46)
         Me.DrawWaveformsButton.TabIndex = 1
         Me.DrawWaveformsButton.Text = "&Draw Waveforms"
         Me.DrawWaveformsButton.UseVisualStyleBackColor = False
@@ -96,9 +97,9 @@ Partial Class EtchOSketch
         Me.ClearButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Salmon
         Me.ClearButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ClearButton.Font = New System.Drawing.Font("Constantia", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.ClearButton.Location = New System.Drawing.Point(403, 359)
+        Me.ClearButton.Location = New System.Drawing.Point(403, 372)
         Me.ClearButton.Name = "ClearButton"
-        Me.ClearButton.Size = New System.Drawing.Size(194, 79)
+        Me.ClearButton.Size = New System.Drawing.Size(194, 46)
         Me.ClearButton.TabIndex = 2
         Me.ClearButton.Text = "&Clear"
         Me.ClearButton.UseVisualStyleBackColor = False
@@ -112,9 +113,9 @@ Partial Class EtchOSketch
         Me.ExitButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Salmon
         Me.ExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ExitButton.Font = New System.Drawing.Font("Constantia", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.ExitButton.Location = New System.Drawing.Point(603, 359)
+        Me.ExitButton.Location = New System.Drawing.Point(603, 372)
         Me.ExitButton.Name = "ExitButton"
-        Me.ExitButton.Size = New System.Drawing.Size(194, 79)
+        Me.ExitButton.Size = New System.Drawing.Size(194, 46)
         Me.ExitButton.TabIndex = 3
         Me.ExitButton.Text = "&Exit"
         Me.ExitButton.UseVisualStyleBackColor = False
@@ -183,6 +184,17 @@ Partial Class EtchOSketch
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
+        'SoundCheckBox
+        '
+        Me.SoundCheckBox.AutoSize = True
+        Me.SoundCheckBox.Font = New System.Drawing.Font("Constantia", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.SoundCheckBox.Location = New System.Drawing.Point(685, 424)
+        Me.SoundCheckBox.Name = "SoundCheckBox"
+        Me.SoundCheckBox.Size = New System.Drawing.Size(105, 22)
+        Me.SoundCheckBox.TabIndex = 6
+        Me.SoundCheckBox.Text = "Sound On?"
+        Me.SoundCheckBox.UseVisualStyleBackColor = True
+        '
         'EtchOSketch
         '
         Me.AcceptButton = Me.DrawWaveformsButton
@@ -191,6 +203,7 @@ Partial Class EtchOSketch
         Me.BackColor = System.Drawing.Color.IndianRed
         Me.CancelButton = Me.ClearButton
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.SoundCheckBox)
         Me.Controls.Add(Me.ExitButton)
         Me.Controls.Add(Me.ClearButton)
         Me.Controls.Add(Me.DrawWaveformsButton)
@@ -225,4 +238,5 @@ Partial Class EtchOSketch
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents ColorDialog As ColorDialog
+    Friend WithEvents SoundCheckBox As CheckBox
 End Class

@@ -10,8 +10,10 @@ Public Class EtchOSketch
     Dim currentColor As Color = New Color
     Dim shake As New Point(20, 35)
     Dim unshake As New Point(12, 27)
+    Dim sound As Boolean
     Private Sub EtchOSketch_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         currentColor = Color.Black
+        SoundCheckBox.Checked = False
     End Sub
 
     Private Sub PictureBox_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox.MouseMove, PictureBox.MouseDown
@@ -38,11 +40,14 @@ Public Class EtchOSketch
     Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click
         PictureBox.Refresh()
         PictureBox.Location = shake
-        Try
-            'Replace file path with path from your computer if you would like to add sound to the shaking
-            My.Computer.Audio.Play("C:\Users\bella\Downloads\flax2-104288.wav")
-        Catch ex As Exception
-        End Try
+        sound = SoundCheckBox.Checked
+        If sound Then
+            Try
+                My.Computer.Audio.Play(My.Resources.Shaker_Sound)
+            Catch ex As Exception
+            End Try
+        End If
+
         System.Threading.Thread.Sleep(250)
         PictureBox.Location = unshake
         For i = 0 To 7
@@ -51,6 +56,7 @@ Public Class EtchOSketch
             System.Threading.Thread.Sleep(250)
             PictureBox.Location = unshake
         Next
+
     End Sub
 
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
