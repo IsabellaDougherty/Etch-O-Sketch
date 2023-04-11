@@ -14,7 +14,7 @@ Public Class EtchOSketch
     Dim empty As Boolean = True
     Private Sub EtchOSketch_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         currentColor = Color.Black
-        SoundCheckBox.Checked = False
+        SoundCheckBox.Checked = True
     End Sub
 
     Private Sub PictureBox_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox.MouseMove, PictureBox.MouseDown
