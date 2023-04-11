@@ -11,6 +11,7 @@ Public Class EtchOSketch
     Dim shake As New Point(20, 35)
     Dim unshake As New Point(12, 27)
     Dim sound As Boolean
+    Dim empty As Boolean = True
     Private Sub EtchOSketch_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         currentColor = Color.Black
         SoundCheckBox.Checked = False
@@ -39,11 +40,12 @@ Public Class EtchOSketch
 
     Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click
         PictureBox.Refresh()
+        empty = True
         PictureBox.Location = shake
         sound = SoundCheckBox.Checked
         If sound Then
             Try
-                My.Computer.Audio.Play(My.Resources.Shaker_Sound)
+                My.Computer.Audio.Play(My.Resources.Shaker_Sound, AudioPlayMode.Background)
             Catch ex As Exception
             End Try
         End If
@@ -78,6 +80,7 @@ Public Class EtchOSketch
     Sub DrawLineSegment(x1%, y1%, x2%, y2%)
         Dim g As Graphics = PictureBox.CreateGraphics
         Dim pen As Pen = New Pen(Me.currentColor)
+        empty = False
         g.DrawLine(Pen, x1, y1, x2, y2)
         Pen.Dispose()
         g.Dispose()
@@ -89,7 +92,9 @@ Public Class EtchOSketch
         Dim wavePen As New Pen(Color.Black, 3)
         Dim g As Graphics = PictureBox.CreateGraphics
 
-        ClearButton.PerformClick()
+        If empty = False Then
+            ClearButton.PerformClick()
+        End If
 
         'draw a center line in the wave
         wavePen = New Pen(Color.Black, 1)
@@ -101,18 +106,18 @@ Public Class EtchOSketch
         Next
 
         For r As Double = 0 To 776
-            wavePen = New Pen(Color.Black, 3)
-            y = Math.Sin(r / 776 * 2 * Math.PI) * 100 + 150
+            wavePen = New Pen(Color.DarkCyan, 3)
+            y = Math.Sin(r / 776 * 2 * Math.PI) * 150 + 163
             x = r
             g.DrawLine(wavePen, CType(x, Single), CType(y, Single), CType(x, Single) + 1, CType(y, Single))
 
-            wavePen = New Pen(Color.Blue, 3)
-            y = Math.Cos(r / 776 * 2 * Math.PI) * 100 + 150
+            wavePen = New Pen(Color.Chartreuse, 3)
+            y = Math.Cos(r / 776 * 2 * Math.PI) * 150 + 163
             x = r
             g.DrawLine(wavePen, CType(x, Single), CType(y, Single), CType(x, Single) + 1, CType(y, Single))
 
-            wavePen = New Pen(Color.DarkRed, 3)
-            y = Math.Tan(r / 776 * 2 * Math.PI) * 100 + 150
+            wavePen = New Pen(Color.Sienna, 5)
+            y = Math.Tan(r / 776 * 2 * Math.PI) * 150 + 163
             'x = r
             If y > 362 Then
             Else
@@ -130,13 +135,5 @@ Public Class EtchOSketch
 
     Private Sub ClearToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem.Click
         ClearButton.PerformClick()
-    End Sub
-
-    Sub shakeSound()
-        Try
-            My.Computer.Audio.Play("C:\Users\bella\Downloads\chajchas-91758.wav",
-            AudioPlayMode.WaitToComplete)
-        Catch ex As Exception
-        End Try
     End Sub
 End Class
