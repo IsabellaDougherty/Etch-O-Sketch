@@ -136,4 +136,8 @@ Public Class EtchOSketch
     Private Sub ClearToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem.Click
         ClearButton.PerformClick()
     End Sub
+
+    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        MsgBox("This program is to be used as a drawing pad of sorts. Click the left mouse button (or track pad) and move the mouse to draw. Click the scroll wheel, select color button, or select color menu item to change what color you are drawing with. Click the clear button to reset the screen. Click the draw waveforms button or menu item to draw a sine, cosine, and tangent waveform. Click the exit button to leave the program.")
+    End Sub
 End Class
